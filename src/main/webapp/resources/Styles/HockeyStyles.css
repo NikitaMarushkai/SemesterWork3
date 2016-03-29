@@ -1,0 +1,146 @@
+h1 {
+    text-align: center;
+    font-size: 50px;
+    color: azure;
+}
+
+#main-body {
+    background: url('../images/main_background.jpg') top no-repeat;
+    background-size: cover;
+
+}
+
+.login {
+    background-color: aquamarine;
+    margin-left: 88%;
+    width: 11%;
+    text-align: right;
+    border-radius: 10px;
+    opacity: 0.9;
+}
+
+.registration {
+    background-color: brown;
+    border-radius: 7px;
+    width: 11%;
+    margin-left: 88%;
+}
+
+.enter {
+    font-size: xx-large;
+}
+
+a {
+    color: lightslategray;
+    text-decoration: blink;
+}
+
+a:hover {
+    color: blue;
+}
+
+/*header styles*/
+.hlink {
+    color: black;
+}
+
+/*header styles*/
+.head {
+    border-right: 5px solid red;
+    font-size: 26px;
+    width: 10%;
+    text-align: center;
+    background-color: aquamarine;
+    opacity: 0.7;
+}
+
+#content {
+    min-height: 100%;
+    min-width: 100%;
+    align-content: center;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.news-block {
+    width: 70%;
+    margin-left: 20%;
+    background-color: beige;
+    opacity: 0.8;
+    min-height: inherit;
+}
+
+#menu {
+    float: left;
+}
+
+#m_list {
+    list-style: none;
+}
+
+.list_element {
+    padding-top: 10%;
+    font-size: 25px;
+    background-color: aliceblue;
+    opacity: 0.7;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.newslink {
+    color: red;
+}
+
+/*main page table styles*/
+#standings {
+    width: 90%;
+    background-color: whitesmoke;
+    margin-left: 6%;
+    opacity: 0.9;
+}
+
+.table_head {
+
+}
+
+.table_content {
+    border: 2px double darkslateblue;
+    text-align: center;
+}
+
+.side {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: "Times New Roman";
+}
+
+#standings_head {
+    font-size: 60px;
+    font-weight: bold;
+    font-style: italic;
+    color: cadetblue;
+}
+
+/*teamlist*/
+#teamlist_body {
+    background: url("../images/oc.jpg") top no-repeat;
+    background-size: cover;
+}
+
+#team-block {
+    margin-left: 30%;
+    width: 40%;
+    background-color: azure;
+    opacity: 0.9;
+}
+
+.inner {
+    text-align: center;
+}
+
+.image {
+    position: relative;
+    width: 70%;
+}
+

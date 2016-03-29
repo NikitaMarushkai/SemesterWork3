@@ -1,0 +1,20 @@
+body {
+    background: url("../images/profile.jpg");
+}
+
+.content {
+    align: right;
+    padding-left: 50%;
+}
+
+td {
+    font-family: 'Times New Roman';
+    font-size: 200%;
+}
+
+h1 {
+    font-family: 'Arial';
+    color: darkblue;
+    font-size: 215%;
+    font-style: italic;
+}
