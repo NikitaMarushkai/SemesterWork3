@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.kpfu.itis.group408.marushkai.dao.TeamDAO;
 import ru.kpfu.itis.group408.marushkai.domain.Team;
+import ru.kpfu.itis.group408.marushkai.service.interfaces.TeamService;
 
 import java.util.List;
 

@@ -5,7 +5,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.kpfu.itis.group408.marushkai.dao.ContestantDAO;
 import ru.kpfu.itis.group408.marushkai.domain.Contestant;
+import ru.kpfu.itis.group408.marushkai.service.interfaces.ContestantService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -51,5 +53,29 @@ public class ContestantServiceImpl implements ContestantService<Contestant> {
     @Override
     public List<Contestant> listContestants() {
         return contestantDAO.listContestants();
+    }
+
+    @Transactional
+    @Override
+    public List<Contestant> listEastSide() {
+        List<Contestant> east = new ArrayList<>();
+        for (Contestant cont : this.listContestants()) {
+            if (cont.getRegion().equals("east")) {
+                east.add(cont);
+            }
+        }
+        return east;
+    }
+
+    @Transactional
+    @Override
+    public List<Contestant> listWestSide() {
+        List<Contestant> west = new ArrayList<>();
+        for (Contestant cont : this.listContestants()) {
+            if (cont.getRegion().equals("west")) {
+                west.add(cont);
+            }
+        }
+        return west;
     }
 }

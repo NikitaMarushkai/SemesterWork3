@@ -46,6 +46,23 @@ public class Standing {
     @Column(name = "Score")
     private Integer score;
 
+    public Standing(String team, String side, Integer games, Integer wins, Integer overTimeWins, Integer bullitWins, Integer bullitFaults, Integer overTimeFaults, Integer faults, Integer goals, Integer score) {
+        this.team = team;
+        this.side = side;
+        this.games = games;
+        this.wins = wins;
+        this.overTimeWins = overTimeWins;
+        this.bullitWins = bullitWins;
+        this.bullitFaults = bullitFaults;
+        this.overTimeFaults = overTimeFaults;
+        this.faults = faults;
+        this.goals = goals;
+        this.score = score;
+    }
+
+    public Standing() {
+    }
+
     public String getTeam() {
         return team;
     }

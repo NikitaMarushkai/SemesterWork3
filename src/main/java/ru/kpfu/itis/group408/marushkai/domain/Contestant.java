@@ -8,6 +8,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "CONTESTANTS")
 public class Contestant {
+    public Contestant() {
+    }
 
     @Id
     @Column(name = "ID")
@@ -25,6 +27,13 @@ public class Contestant {
 
     @Column(name = "REGION")
     private String region;
+
+    public Contestant(String team1, String team2, String contest, String region) {
+        this.team1 = team1;
+        this.team2 = team2;
+        this.contest = contest;
+        this.region = region;
+    }
 
     public Integer getId() {
         return id;

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.kpfu.itis.group408.marushkai.dao.PostDAO;
 import ru.kpfu.itis.group408.marushkai.domain.Post;
+import ru.kpfu.itis.group408.marushkai.service.interfaces.PostService;
 
 import java.util.List;
 

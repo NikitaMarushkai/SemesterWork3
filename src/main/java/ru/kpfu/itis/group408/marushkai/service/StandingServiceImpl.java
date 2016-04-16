@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.kpfu.itis.group408.marushkai.dao.StandingDAO;
 import ru.kpfu.itis.group408.marushkai.domain.Standing;
+import ru.kpfu.itis.group408.marushkai.service.interfaces.StandingService;
 
 import java.util.ArrayList;
 import java.util.List;

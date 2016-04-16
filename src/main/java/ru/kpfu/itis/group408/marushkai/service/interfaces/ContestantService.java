@@ -1,11 +1,11 @@
-package ru.kpfu.itis.group408.marushkai.service;
+package ru.kpfu.itis.group408.marushkai.service.interfaces;
 
 import java.util.List;
 
 /**
  * Created by unlim_000 on 29.03.2016.
  */
-public interface PostService<T> {
+public interface ContestantService<T> {
     void add(T toAdd);
 
     void deleteById(Integer id) throws Exception;
@@ -17,4 +17,8 @@ public interface PostService<T> {
     T getById(Integer id) throws Exception;
 
     List<T> listContestants();
+
+    List<T> listEastSide();
+
+    List<T> listWestSide();
 }

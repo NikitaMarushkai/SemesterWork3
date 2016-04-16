@@ -2,6 +2,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html" charset="UTF-8">
@@ -12,18 +13,18 @@
 <body id="main-body">
 <div class="content">
     <div align="right" class="login">
-        <c:if test="${!loginMark}">
+        <sec:authorize access="isAnonymous()">
             <a href="<c:url value="/login.jsp"/>">
                 <spring:message code="label.login"/>
             </a>
-            <a href="<c:url value="/registration.jsp"/>">
+            <a href="<c:url value="/static/reg"/>">
                 <spring:message code="label.registration"/>
             </a>
-        </c:if>
-        <c:if test="${loginMark}">
-            <h3>Здравствуйте, <a href="<c:url value="/profile"/>">${username}</a></h3>
+        </sec:authorize>
+        <sec:authorize access="isAuthenticated()">
+            <h3>Здравствуйте, <a href="<c:url value="/profile/show"/>">${username}</a></h3>
             <a href="<c:url value="/logout"/>"><spring:message code="label.logout"/></a>
-        </c:if>
+        </sec:authorize>
     </div>
     <h1>
         HOCKEY-BOX. All about hockey.
@@ -31,13 +32,13 @@
     <br>
     <table>
         <tr>
-            <td class="head"><a href="<c:url value="/posts?id=teamlist"/>" class="hlink">
+            <td class="head"><a href="<c:url value="/teamList"/>" class="hlink">
                 <spring:message code="label.teamlist"/></a></td>
-            <td class="head"><a href="<c:url value="/timetable"/>" class="hlink">
+            <td class="head"><a href="<c:url value="/timeTable"/>" class="hlink">
                 <spring:message code="label.timetable"/></a></td>
-            <td class="head"><a href="<c:url value="/posts?id=news"/>" class="hlink">
+            <td class="head"><a href="<c:url value="/news"/>" class="hlink">
                 <spring:message code="label.news"/></a></td>
-            <td class="head"><a href="<c:url value="International.jsp"/>" class="hlink">
+            <td class="head"><a href="<c:url value="/static/international"/>" class="hlink">
                 <spring:message code="label.international"/></a></td>
         </tr>
     </table>

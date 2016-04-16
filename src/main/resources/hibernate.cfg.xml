@@ -9,5 +9,7 @@
         <mapping class="ru.kpfu.itis.group408.marushkai.domain.Post"/>
         <mapping class="ru.kpfu.itis.group408.marushkai.domain.Standing"/>
         <mapping class="ru.kpfu.itis.group408.marushkai.domain.Team"/>
+        <mapping class="ru.kpfu.itis.group408.marushkai.domain.user.User"/>
+        <mapping class="ru.kpfu.itis.group408.marushkai.domain.user.Authority"/>
     </session-factory>
 </hibernate-configuration>

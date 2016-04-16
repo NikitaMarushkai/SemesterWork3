@@ -1,4 +1,4 @@
-package ru.kpfu.itis.group408.marushkai.service;
+package ru.kpfu.itis.group408.marushkai.service.interfaces;
 
 import ru.kpfu.itis.group408.marushkai.domain.Contact;
 

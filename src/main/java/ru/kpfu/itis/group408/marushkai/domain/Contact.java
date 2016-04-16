@@ -9,6 +9,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "CONTACTS")
 public class Contact {
+    public Contact() {
+    }
 
     @Id
     @Column(name = "ID")
@@ -26,6 +28,13 @@ public class Contact {
 
     @Column(name = "TELEPHONE")
     private String telephone;
+
+    public Contact(String firstname, String lastname, String email, String telephone) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.telephone = telephone;
+    }
 
     public Integer getId() {
         return id;

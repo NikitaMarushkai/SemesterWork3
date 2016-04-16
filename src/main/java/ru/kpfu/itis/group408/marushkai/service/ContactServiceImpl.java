@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.kpfu.itis.group408.marushkai.dao.ContactDAO;
 import ru.kpfu.itis.group408.marushkai.domain.Contact;
+import ru.kpfu.itis.group408.marushkai.service.interfaces.ContactService;
 
 import java.util.List;
 

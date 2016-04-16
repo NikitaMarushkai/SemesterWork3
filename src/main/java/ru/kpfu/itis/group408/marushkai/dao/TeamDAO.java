@@ -48,11 +48,11 @@ public class TeamDAO implements DAO<Team> {
 
     @Override
     public Team getById(Integer id) {
-        return null;
+        return (Team) sessionFactory.getCurrentSession().load(Team.class, id);
     }
 
     @Override
     public List<Team> listContestants() {
-        return null;
+        return sessionFactory.getCurrentSession().createQuery("from Team").list();
     }
 }

@@ -9,6 +9,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "POSTS")
 public class Post {
+    public Post() {
+    }
 
     @Id
     @Column(name = "ID")
@@ -19,6 +21,7 @@ public class Post {
     private String name;
 
     @Column(name = "CREATION_DATE")
+    @GeneratedValue
     private String creationDate;
 
     @Column(name = "IMAGE")
@@ -26,6 +29,12 @@ public class Post {
 
     @Column(name = "CONTENT")
     private String content;
+
+    public Post(String name, String image, String content) {
+        this.name = name;
+        this.image = image;
+        this.content = content;
+    }
 
     public Integer getId() {
         return id;
