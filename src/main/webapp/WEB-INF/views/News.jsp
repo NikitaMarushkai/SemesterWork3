@@ -60,7 +60,7 @@
     </ul>
 </div>
 <div id="content">
-    <div class="news-block" style="text-align: center;">
+    <div id="news" class="news-block" style="text-align: center;">
         <c:forEach items="${news}" var="post">
             <div style=" border-bottom: 2px solid darkblue">
                 <h1>${post.name}</h1>
@@ -72,7 +72,6 @@
                 </sec:authorize>
             </div>
         </c:forEach>
-        <h1>${alert}</h1>
     </div>
 </div>
 </body>

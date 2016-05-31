@@ -1,11 +1,12 @@
 package ru.kpfu.itis.group408.marushkai.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by unlim_000 on 19.03.2016.
  */
-public interface DAO<T> {
+public interface DAO<T> extends Serializable {
 
     void add(T toAdd);
 

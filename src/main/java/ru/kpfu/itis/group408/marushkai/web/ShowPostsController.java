@@ -28,12 +28,14 @@ public class ShowPostsController {
     @Autowired
     TeamService<Team> teamService;
 
-    @RequestMapping("/news")
+
+    @RequestMapping("/showNews")
     public String showNews(Map<String, Object> map) {
         ArrayList<Post> posts = (ArrayList<Post>) postService.listContestants();
         map.put("news", posts);
         return "News";
     }
+
 
     @RequestMapping("/timeTable")
     public String showTimeTable(Map<String, Object> map) {

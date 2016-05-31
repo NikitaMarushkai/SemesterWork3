@@ -25,7 +25,7 @@ public class PostDAO implements DAO<Post> {
     public void deleteById(Integer id) throws NullPointerException {
         Post post = this.getById(id);
         if (post != null) {
-            sessionFactory.getCurrentSession().delete(post);
+            sessionFactory.getCurrentSession().createQuery("delete from Post where id = ?").setInteger(0, post.getId()).executeUpdate();
         } else {
             throw new NullPointerException("No such post found, nothing to delete");
         }
@@ -35,7 +35,7 @@ public class PostDAO implements DAO<Post> {
     public void deleteByName(String name) throws NullPointerException {
         Post post = this.getByName(name);
         if (post != null) {
-            sessionFactory.getCurrentSession().delete(post);
+            sessionFactory.getCurrentSession().createQuery("delete from Post where id = ?").setInteger(0, post.getId()).executeUpdate();
         } else {
             throw new NullPointerException("No such post found");
         }
@@ -54,5 +54,9 @@ public class PostDAO implements DAO<Post> {
     @Override
     public List<Post> listContestants() {
         return sessionFactory.getCurrentSession().createQuery("from Post").list();
+    }
+
+    public void updatePost(Post post) {
+        sessionFactory.getCurrentSession().update(post);
     }
 }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 1.6.2//EN"
+        "http://google-web-toolkit.googlecode.com/svn/tags/1.6.2/distro-source/core/src/gwt-module.dtd">
+<module rename-to='resources.gwt'>
+    <inherits name='com.google.gwt.user.User'/>
+    <inherits name='com.google.gwt.user.theme.standard.Standard'/>
+    <entry-point class='ru.kpfu.itis.group408.marushkai.gwt.client.Admin'/>
+
+    <source path="gwt/client"/>
+    <source path="gwt/client/admincontent"/>
+    <source path="domain"/>
+
+    <servlet path="/resources.gwt/springGwtServices/*" class="org.spring4gwt.server.SpringGwtRemoteServiceServlet"/>
+</module>

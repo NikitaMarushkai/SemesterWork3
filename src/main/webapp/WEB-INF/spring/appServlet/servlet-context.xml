@@ -1,20 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/mvc"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:mvc="http://www.springframework.org/schema/mvc"
              xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:context="http://www.springframework.org/schema/context"
              xsi:schemaLocation="
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
-        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
     <!-- DispatcherServlet Context: определяет настройки одного сервлета; бины,
         которые доступны только ему -->
 
+    <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <beans:property name="maxUploadSize" value="1000536"/>
+    </beans:bean>
+
     <!-- Разрешаем использование аннотаций Spring MVC (то есть @Controller и.т.д) -->
-    <annotation-driven/>
+    <mvc:annotation-driven/>
+
+    <context:property-placeholder location="classpath:application.properties" ignore-unresolvable="true"/>
+
+    <mvc:resources mapping="/images/**" location="file:${image.dir}"/>
+
+    <beans:bean id="userHome" class="ru.kpfu.itis.group408.marushkai.util.PropertiesWork">
+        <beans:property name="path" value="${image.dir}"/>
+    </beans:bean>
 
     <!-- Всю статику (изображения, css-файлы, javascript) положим в папку webapp/resources
         и замаппим их на урл вида /resources/** -->
-    <resources mapping="/resources/**" location="/resources/"/>
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
+
+    <mvc:resources mapping="/resources.gwt/**" location="/resources.gwt/"
+                   cache-period="31556926"/>
 
     <!-- Отображение видов на jsp-файлы, лежащие в папке /WEB-INF/views -->
     <beans:bean

@@ -36,10 +36,14 @@
                 <spring:message code="label.teamlist"/></a></td>
             <td class="head"><a href="<c:url value="/timeTable"/>" class="hlink">
                 <spring:message code="label.timetable"/></a></td>
-            <td class="head"><a href="<c:url value="/news"/>" class="hlink">
+            <td class="head"><a href="<c:url value="/showNews"/>" class="hlink">
                 <spring:message code="label.news"/></a></td>
             <td class="head"><a href="<c:url value="/static/international"/>" class="hlink">
                 <spring:message code="label.international"/></a></td>
+            <sec:authorize access="hasRole('admin')">
+                <td class="head"><a href="<c:url value="/adminConsole"/>" class="hlink">
+                    <spring:message code="label.admin"/></a></td>
+            </sec:authorize>
         </tr>
     </table>
     <table cellspacing="4" cellpadding="2" id="standings">

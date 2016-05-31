@@ -1,6 +1,7 @@
 package ru.kpfu.itis.group408.marushkai.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by unlim_000 on 19.03.2016.
@@ -8,7 +9,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "POSTS")
-public class Post {
+public class Post implements Serializable {
     public Post() {
     }
 
