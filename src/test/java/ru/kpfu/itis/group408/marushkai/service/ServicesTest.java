@@ -10,16 +10,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ru.kpfu.itis.group408.marushkai.dao.*;
-import ru.kpfu.itis.group408.marushkai.domain.Contestant;
-import ru.kpfu.itis.group408.marushkai.domain.Post;
-import ru.kpfu.itis.group408.marushkai.domain.Standing;
-import ru.kpfu.itis.group408.marushkai.domain.Team;
+import ru.kpfu.itis.group408.marushkai.domain.*;
 import ru.kpfu.itis.group408.marushkai.service.interfaces.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
@@ -44,6 +42,16 @@ public class ServicesTest {
         @Bean
         public ContestantDAO contestantDAO() {
             return Mockito.mock(ContestantDAO.class);
+        }
+
+        @Bean
+        public AdvertService advertService() {
+            return new AdvertServiceImpl();
+        }
+
+        @Bean
+        public AdvertDao advertDao() {
+            return Mockito.mock(AdvertDao.class);
         }
 
         @Bean
@@ -82,24 +90,25 @@ public class ServicesTest {
         }
     }
 
-//    @Autowired
-//    private PostService<Post> postService;
 
 
     @Autowired
     private ContestantService<Contestant> contestantService;
 
+    @Autowired
+    private AdvertService advertService;
 
-//    @Autowired
-//    private StandingService<Standing> standingStandingService;
-//
-//
-//    @Autowired
-//    private TeamService<Team> teamService;
-//
-//
-//    @Autowired
-//    private UserService userService;
+    @Autowired
+    private AdvertDao advertDao;
+
+    @Autowired
+    private ContestantDAO contestantDAO;
+
+    @Autowired
+    private PostDAO postDAO;
+
+    @Autowired
+    private PostService<Post> postService;
 
 
     @Test
@@ -134,4 +143,25 @@ public class ServicesTest {
             assertEquals(contestants.get(i).getRegion(), contestantService.listWestSide().get(i).getRegion());
         }
     }
+
+    @Test
+    public void advertGetTest() {
+        Mockito.when(advertDao.getById(1)).thenReturn(new Advert("one", "/images/smth.jpeg", "http://vk.com"));
+        assertNotNull(advertService.get(1));
+    }
+
+    @Test
+    public void listContestantsPostTest() {
+        ArrayList<Post> contActual = new ArrayList<>();
+        contActual.add(new Post("one", "smth", "smth1"));
+        contActual.add(new Post("one", "smth", "smth1"));
+        contActual.add(new Post("one", "smth", "smth1"));
+
+        Mockito.when(postDAO.listContestants()).thenReturn(contActual);
+
+        assertEquals(postService.listContestants(), contActual);
+    }
+
+
+
 }

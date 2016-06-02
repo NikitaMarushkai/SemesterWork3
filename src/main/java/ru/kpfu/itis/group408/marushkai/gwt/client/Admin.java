@@ -1,9 +1,11 @@
 package ru.kpfu.itis.group408.marushkai.gwt.client;
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TabPanel;
 import ru.kpfu.itis.group408.marushkai.gwt.client.admincontent.AddPostTab;
+import ru.kpfu.itis.group408.marushkai.gwt.client.admincontent.AdvertisementTab;
 import ru.kpfu.itis.group408.marushkai.gwt.client.admincontent.EditPostTab;
 import ru.kpfu.itis.group408.marushkai.gwt.client.admincontent.EditTableTab;
 
@@ -19,7 +21,7 @@ public class Admin implements EntryPoint {
 
         String tab1title = "Добавить новость";
         String tab2title = "Редактировать новости";
-        String tab3title = "Редактор команд";
+        String tab3title = "Реклама";
         String tab4title = "Редактор турнирной таблицы";
         String tab5title = "Переход на сайт";
 
@@ -27,9 +29,12 @@ public class Admin implements EntryPoint {
         final AddPostTab addPostTab = new AddPostTab();
         final EditPostTab editPostTab = new EditPostTab();
         final EditTableTab editTableTab = new EditTableTab();
+        final AdvertisementTab advertisementTab = new AdvertisementTab();
         tabPanel.add(addPostTab.getAddPostForm(), tab1title);
         tabPanel.add(editPostTab.getEditPostTab(), tab2title);
         tabPanel.add(editTableTab.getEditTableTab(), tab4title);
+        tabPanel.add(advertisementTab.getAdvertisementTab(), tab3title);
+        tabPanel.add(new Anchor("/"), tab5title);
 
         tabPanel.selectTab(0);
 

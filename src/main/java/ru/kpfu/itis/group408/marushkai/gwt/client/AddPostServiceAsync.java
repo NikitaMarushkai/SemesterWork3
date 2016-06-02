@@ -1,6 +1,7 @@
 package ru.kpfu.itis.group408.marushkai.gwt.client;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import ru.kpfu.itis.group408.marushkai.domain.Advert;
 import ru.kpfu.itis.group408.marushkai.domain.Post;
 import ru.kpfu.itis.group408.marushkai.domain.Standing;
 
@@ -15,4 +16,6 @@ public interface AddPostServiceAsync {
     void getAllPosts(AsyncCallback<List<Post>> callback);
 
     void getAllTeams(AsyncCallback<List<Standing>> callback);
+
+    void getAllAdverts(AsyncCallback<List<Advert>> callback);
 }

@@ -6,9 +6,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.kpfu.itis.group408.marushkai.domain.Post;
 import ru.kpfu.itis.group408.marushkai.domain.Standing;
+import ru.kpfu.itis.group408.marushkai.form.AddAdvertForm;
 import ru.kpfu.itis.group408.marushkai.form.AddNewsForm;
 import ru.kpfu.itis.group408.marushkai.form.EditTableForm;
 import ru.kpfu.itis.group408.marushkai.form.UpdateNewsForm;
+import ru.kpfu.itis.group408.marushkai.service.interfaces.AdvertService;
 import ru.kpfu.itis.group408.marushkai.service.interfaces.PostService;
 import ru.kpfu.itis.group408.marushkai.service.interfaces.StandingService;
 
@@ -23,25 +25,18 @@ public class AdministrativeController {
 
     @Autowired
     PostService<Post> postService;
+
     @Autowired
     StandingService<Standing> standingService;
+
+    @Autowired
+    AdvertService advertService;
 
 
     @RequestMapping(value = "/addPost/news")
     public String addOrDeletePost(/*@PathVariable("category") String category, @RequestParam(name = "head") String head,*/@ModelAttribute AddNewsForm newsForm) {
-//        switch (category) {
-//            case "news":
         postService.add(newsForm);
         return "admin";
-//            case "delete":
-//                try {
-////                    postService.deleteById(id);
-//                } catch (Exception e) {
-////                    map.put("alert", "Impossible to delete by ID, ID is missing");
-//                }
-//                return "redirect:/news";
-//        }
-//        return "admin";
     }
 
     @RequestMapping(value = "/editForm")
@@ -56,10 +51,14 @@ public class AdministrativeController {
         return "admin";
     }
 
-//    @RequestMapping(value = "admin/addPost/news", method = RequestMethod.GET)
-//    public String showAddNewsAdmin(){
-//        return "admin";
-//    }
-
+    @RequestMapping(value = "/addAdvert")
+    public String addAdvert(@ModelAttribute AddAdvertForm addAdvertForm) {
+        if (addAdvertForm.getDelete() == 1) {
+            advertService.delete(addAdvertForm.getListAdv());
+        } else {
+            advertService.add(addAdvertForm);
+        }
+        return "admin";
+    }
 
 }

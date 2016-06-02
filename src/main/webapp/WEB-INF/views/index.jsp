@@ -46,6 +46,13 @@
             </sec:authorize>
         </tr>
     </table>
+    <br>
+    <div>
+        <c:forEach items="${advert}" var="adv">
+            <a href="${adv.link}"><img src="${adv.image}"></a>
+            <p>${adv.text}</p>
+        </c:forEach>
+    </div>
     <table cellspacing="4" cellpadding="2" id="standings">
         <caption id="standings_head">Турнирная таблица КХЛ</caption>
         <tr>

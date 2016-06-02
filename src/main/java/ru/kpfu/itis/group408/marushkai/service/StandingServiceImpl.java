@@ -80,12 +80,8 @@ public class StandingServiceImpl implements StandingService<Standing> {
     @Override
     public void update(EditTableForm form) {
         Standing standing = standingDAO.getById(form.getTeamChooser());
-        System.out.println("team chooser = " + form.getTeamChooser());
-        System.out.println(form.getBullitLosesNumber());
-        System.out.println(standing.getId());
         if (form.getBullitLosesNumber().length() != 0) {
             standing.setBullitFaults(parseInt(form.getBullitLosesNumber()));
-            System.out.println("after work= " + standing.getBullitFaults());
         }
         if (form.getBullitWinsNumber().length() != 0) {
             standing.setBullitWins(parseInt(form.getBullitWinsNumber()));

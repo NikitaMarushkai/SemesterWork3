@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.kpfu.itis.group408.marushkai.domain.user.Authority;
 import ru.kpfu.itis.group408.marushkai.domain.user.User;
+import ru.kpfu.itis.group408.marushkai.service.interfaces.AdvertService;
 import ru.kpfu.itis.group408.marushkai.service.interfaces.StandingService;
 import ru.kpfu.itis.group408.marushkai.service.interfaces.UserService;
 
@@ -28,6 +29,9 @@ public class IndexController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    AdvertService advertService;
+
     @RequestMapping("/")
     public String home() {
         return "redirect:/index";
@@ -39,6 +43,7 @@ public class IndexController {
         map.put("username", SecurityContextHolder.getContext().getAuthentication().getName());
         map.put("west", standingService.getWestSide());
         map.put("east", standingService.getEastSide());
+        map.put("advert", advertService.getAll());
         return "index";
     }
 
