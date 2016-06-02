@@ -5,9 +5,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.kpfu.itis.group408.marushkai.domain.Post;
+import ru.kpfu.itis.group408.marushkai.domain.Standing;
 import ru.kpfu.itis.group408.marushkai.form.AddNewsForm;
+import ru.kpfu.itis.group408.marushkai.form.EditTableForm;
 import ru.kpfu.itis.group408.marushkai.form.UpdateNewsForm;
 import ru.kpfu.itis.group408.marushkai.service.interfaces.PostService;
+import ru.kpfu.itis.group408.marushkai.service.interfaces.StandingService;
 
 
 /**
@@ -20,6 +23,8 @@ public class AdministrativeController {
 
     @Autowired
     PostService<Post> postService;
+    @Autowired
+    StandingService<Standing> standingService;
 
 
     @RequestMapping(value = "/addPost/news")
@@ -42,6 +47,12 @@ public class AdministrativeController {
     @RequestMapping(value = "/editForm")
     public String editPost(@ModelAttribute UpdateNewsForm updateNewsForm) {
         postService.update(updateNewsForm);
+        return "admin";
+    }
+
+    @RequestMapping(value = "/editTable")
+    public String editTable(@ModelAttribute EditTableForm editTableForm) {
+        standingService.update(editTableForm);
         return "admin";
     }
 

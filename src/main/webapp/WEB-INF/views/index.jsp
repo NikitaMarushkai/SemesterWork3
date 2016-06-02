@@ -70,7 +70,7 @@
             <td class="table_content">${west.wins}</td>
             <td class="table_content">${west.overTimeWins}</td>
             <td class="table_content">${west.bullitWins}</td>
-            <td class="table_content">${west.bullitFaults}></td>
+            <td class="table_content">${west.bullitFaults}</td>
             <td class="table_content">${west.overTimeFaults}</td>
             <td class="table_content">${west.faults}</td>
             <td class="table_content">${west.goals}</td>
@@ -87,7 +87,7 @@
             <td class="table_content">${east.wins}</td>
             <td class="table_content">${east.overTimeWins}</td>
             <td class="table_content">${east.bullitWins}</td>
-            <td class="table_content">${east.bullitFaults}></td>
+            <td class="table_content">${east.bullitFaults}</td>
             <td class="table_content">${east.overTimeFaults}</td>
             <td class="table_content">${east.faults}</td>
             <td class="table_content">${east.goals}</td>

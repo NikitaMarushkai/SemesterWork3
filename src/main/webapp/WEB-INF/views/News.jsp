@@ -63,13 +63,15 @@
     <div id="news" class="news-block" style="text-align: center;">
         <c:forEach items="${news}" var="post">
             <div style=" border-bottom: 2px solid darkblue">
-                <h1>${post.name}</h1>
+                <sec:authorize access="isAuthenticated()">
+                    <h1><a href="/openNewsTab?id=${post.id}">${post.name}</a></h1>
+                </sec:authorize>
+                <sec:authorize access="isAnonymous()">
+                    <h1>${post.name}</h1>
+                </sec:authorize>
                 <img src="${post.image}">
                 <h2>${post.content}</h2>
                 <p><i>${post.creationDate}</i></p>
-                <sec:authorize access="hasRole('admin')">
-                    <a href="/admin/addPost/delete?name=${post.id}" name="delete">Удалить новость</a>
-                </sec:authorize>
             </div>
         </c:forEach>
     </div>

@@ -1,5 +1,7 @@
 package ru.kpfu.itis.group408.marushkai.domain.user;
 
+import ru.kpfu.itis.group408.marushkai.domain.Comment;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
@@ -44,7 +46,11 @@ public class User implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "username")
-    private Set<Authority> authorities;
+    private transient Set<Authority> authorities;
+
+    @OneToOne
+    @JoinColumn(name = "commentID")
+    private Comment post_comment;
 
     public User(String username, String password, int enabled, String name, String surname, String patronymic, String email, String comment) {
         this.username = username;
@@ -55,6 +61,31 @@ public class User implements Serializable {
         this.patronymic = patronymic;
         this.email = email;
         this.comment = comment;
+    }
+
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(int enabled) {
+        this.enabled = enabled;
     }
 
     public String getName() {
@@ -105,27 +136,11 @@ public class User implements Serializable {
         this.authorities = authorities;
     }
 
-    public String getUsername() {
-        return username;
+    public Comment getPost_comment() {
+        return post_comment;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public int getEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(byte enabled) {
-        this.enabled = enabled;
+    public void setPost_comment(Comment post_comment) {
+        this.post_comment = post_comment;
     }
 }

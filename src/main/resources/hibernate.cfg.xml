@@ -11,5 +11,6 @@
         <mapping class="ru.kpfu.itis.group408.marushkai.domain.Team"/>
         <mapping class="ru.kpfu.itis.group408.marushkai.domain.user.User"/>
         <mapping class="ru.kpfu.itis.group408.marushkai.domain.user.Authority"/>
+        <mapping class="ru.kpfu.itis.group408.marushkai.domain.Comment"/>
     </session-factory>
 </hibernate-configuration>

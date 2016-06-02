@@ -5,10 +5,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.kpfu.itis.group408.marushkai.dao.StandingDAO;
 import ru.kpfu.itis.group408.marushkai.domain.Standing;
+import ru.kpfu.itis.group408.marushkai.form.EditTableForm;
 import ru.kpfu.itis.group408.marushkai.service.interfaces.StandingService;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.lang.Integer.parseInt;
 
 /**
  * Created by unlim_000 on 25.03.2016.
@@ -43,7 +46,6 @@ public class StandingServiceImpl implements StandingService<Standing> {
         return standingDAO.getByName(name);
     }
 
-    @Deprecated
     @Override
     public Standing getById(Integer id) throws Exception {
         return standingDAO.getById(id);
@@ -73,6 +75,43 @@ public class StandingServiceImpl implements StandingService<Standing> {
             }
         }
         return east;
+    }
+
+    @Override
+    public void update(EditTableForm form) {
+        Standing standing = standingDAO.getById(form.getTeamChooser());
+        System.out.println("team chooser = " + form.getTeamChooser());
+        System.out.println(form.getBullitLosesNumber());
+        System.out.println(standing.getId());
+        if (form.getBullitLosesNumber().length() != 0) {
+            standing.setBullitFaults(parseInt(form.getBullitLosesNumber()));
+            System.out.println("after work= " + standing.getBullitFaults());
+        }
+        if (form.getBullitWinsNumber().length() != 0) {
+            standing.setBullitWins(parseInt(form.getBullitWinsNumber()));
+        }
+        if (form.getGamesNumber().length() != 0) {
+            standing.setGames(parseInt(form.getGamesNumber()));
+        }
+        if (form.getLosesNumber().length() != 0) {
+            standing.setFaults(parseInt(form.getLosesNumber()));
+        }
+        if (form.getOvertimeLosesNumber().length() != 0) {
+            standing.setOverTimeFaults(parseInt(form.getOvertimeLosesNumber()));
+        }
+        if (form.getOvertimeWinsNumber().length() != 0) {
+            standing.setOverTimeWins(parseInt(form.getOvertimeWinsNumber()));
+        }
+        if (form.getPointsNumber().length() != 0) {
+            standing.setScore(parseInt(form.getPointsNumber()));
+        }
+        if (form.getTotalGoalsNumber().length() != 0) {
+            standing.setGoals(parseInt(form.getTotalGoalsNumber()));
+        }
+        if (form.getWinsNumber().length() != 0) {
+            standing.setWins(parseInt(form.getWinsNumber()));
+        }
+        standingDAO.updateStanding(standing);
     }
 
 

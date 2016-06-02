@@ -2,6 +2,8 @@ package ru.kpfu.itis.group408.marushkai.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
+import java.util.Set;
 
 /**
  * Created by unlim_000 on 19.03.2016.
@@ -10,6 +12,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "POSTS")
 public class Post implements Serializable {
+
     public Post() {
     }
 
@@ -23,7 +26,7 @@ public class Post implements Serializable {
 
     @Column(name = "CREATION_DATE")
     @GeneratedValue
-    private String creationDate;
+    private String creationDate = new Date().toString();
 
     @Column(name = "IMAGE")
     private String image;
@@ -31,10 +34,22 @@ public class Post implements Serializable {
     @Column(name = "CONTENT")
     private String content;
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID")
+    private transient Set<Comment> comments;
+
+
     public Post(String name, String image, String content) {
         this.name = name;
         this.image = image;
         this.content = content;
+    }
+
+    public Post(String name, String image, String content, Set<Comment> comments) {
+        this.name = name;
+        this.image = image;
+        this.content = content;
+        this.comments = comments;
     }
 
     public Integer getId() {
@@ -75,5 +90,13 @@ public class Post implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
     }
 }

@@ -3,6 +3,7 @@ package ru.kpfu.itis.group408.marushkai.gwt.client;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import ru.kpfu.itis.group408.marushkai.domain.Post;
+import ru.kpfu.itis.group408.marushkai.domain.Standing;
 
 import java.util.List;
 
@@ -16,4 +17,6 @@ public interface AddPostService extends RemoteService {
     void add();
 
     List<Post> getAllPosts();
+
+    List<Standing> getAllTeams();
 }

@@ -3,6 +3,7 @@ package ru.kpfu.itis.group408.marushkai.dao;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import ru.kpfu.itis.group408.marushkai.domain.Comment;
 import ru.kpfu.itis.group408.marushkai.domain.Post;
 
 import java.util.List;
@@ -58,5 +59,9 @@ public class PostDAO implements DAO<Post> {
 
     public void updatePost(Post post) {
         sessionFactory.getCurrentSession().update(post);
+    }
+
+    public void addComment(Comment comment) {
+        sessionFactory.getCurrentSession().save(comment);
     }
 }

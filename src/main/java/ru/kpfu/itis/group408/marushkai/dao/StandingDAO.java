@@ -37,18 +37,24 @@ public class StandingDAO implements DAO<Standing> {
     }
 
     @Override
+    @Deprecated
     public Standing getByName(String name) {
-        return (Standing) sessionFactory.getCurrentSession().load(Standing.class, name);
+        return (Standing) sessionFactory.getCurrentSession().createQuery("from Standing where team = \'" +
+                name + "\'").list().get(0);
     }
 
     @Override
-    @Deprecated
-    public Standing getById(Integer id) throws Exception {
-        throw new Exception("Impossible to get by ID, use getByName instead");
+    public Standing getById(Integer id) {
+        return (Standing) sessionFactory.getCurrentSession().load(Standing.class, id);
     }
 
     @Override
     public List<Standing> listContestants() {
         return sessionFactory.getCurrentSession().createQuery("from Standing").list();
+    }
+
+    public void updateStanding(Standing standing) {
+        sessionFactory.getCurrentSession().delete(standing);
+        sessionFactory.getCurrentSession().save(standing);
     }
 }

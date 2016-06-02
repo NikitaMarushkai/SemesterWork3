@@ -5,6 +5,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TabPanel;
 import ru.kpfu.itis.group408.marushkai.gwt.client.admincontent.AddPostTab;
 import ru.kpfu.itis.group408.marushkai.gwt.client.admincontent.EditPostTab;
+import ru.kpfu.itis.group408.marushkai.gwt.client.admincontent.EditTableTab;
 
 
 /**
@@ -25,8 +26,10 @@ public class Admin implements EntryPoint {
         //Create tabs
         final AddPostTab addPostTab = new AddPostTab();
         final EditPostTab editPostTab = new EditPostTab();
+        final EditTableTab editTableTab = new EditTableTab();
         tabPanel.add(addPostTab.getAddPostForm(), tab1title);
         tabPanel.add(editPostTab.getEditPostTab(), tab2title);
+        tabPanel.add(editTableTab.getEditTableTab(), tab4title);
 
         tabPanel.selectTab(0);
 
@@ -35,49 +38,4 @@ public class Admin implements EntryPoint {
         RootPanel.get().add(tabPanel);
 
     }
-
-//    private AddPostServiceAsync addPostService = GWT.create(AddPostService.class);
-//    private Button addMore = new Button();
-//    private Label error = new Label();
-//    private VPanelGetter panelGetter = new VPanelGetter();
-//
-//    private void initComponents(){
-//        addMore.setText("Больше новостей");
-//        addMore.setWidth("200");
-//        addMore.setHeight("100");
-//
-//        error.setHeight("100");
-//        error.setWidth("200");
-//    }
-//
-//    @Override
-//    public void onModuleLoad() {
-//
-//        this.initComponents();
-//
-//        RootPanel.get("button").add(addMore);
-//        RootPanel.get("error").add(error);
-//
-//        final AsyncCallback<ArrayList<Post>> callback = new AsyncCallback<ArrayList<Post>>() {
-//            @Override
-//            public void onFailure(Throwable caught) {
-//                error.setText("Error loading new posts");
-//            }
-//
-//            @Override
-//            public void onSuccess(ArrayList<Post> result) {
-//                for (Post post : result) {
-//                    RootPanel.get("news").add(panelGetter.getCreateVerticalPanel(post.getName(),
-//                            post.getImage(), post.getContent(), post.getCreationDate(), post.getId()));
-//                }
-//            }
-//        };
-//
-//        addMore.addClickHandler(new ClickHandler() {
-//            @Override
-//            public void onClick(ClickEvent event) {
-//                addPostService.add(callback);
-//            }
-//        });
-//    }
 }

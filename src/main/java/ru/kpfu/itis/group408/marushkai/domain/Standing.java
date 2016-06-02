@@ -1,20 +1,23 @@
 package ru.kpfu.itis.group408.marushkai.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by unlim_000 on 19.03.2016.
  */
 @Entity
 @Table(name = "standings")
-public class Standing {
+public class Standing implements Serializable {
 
     @Id
+    @GeneratedValue
+    @Column(name = "ID")
+    private Integer id;
+
     @Column(name = "team")
     private String team;
+
 
     @Column(name = "side")
     private String side;
@@ -149,5 +152,13 @@ public class Standing {
 
     public void setScore(Integer score) {
         this.score = score;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

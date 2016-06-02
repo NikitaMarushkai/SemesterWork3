@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <link type="text/css" rel="stylesheet" href="hellogwt.css">
     <title>Администрирование сайта</title>
-    <script type="text/javascript" language="javascript" src="resources.gwt/resources.gwt.nocache.js"></script>
+    <script type="text/javascript" language="javascript" src="/resources.gwt/resources.gwt.nocache.js"></script>
 </head>
 <body>
 <iframe src="javascript:''" id="__gwt_historyFrame" tabIndex='-1'

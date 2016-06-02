@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.kpfu.itis.group408.marushkai.dao.PostDAO;
+import ru.kpfu.itis.group408.marushkai.dao.StandingDAO;
 import ru.kpfu.itis.group408.marushkai.domain.Post;
+import ru.kpfu.itis.group408.marushkai.domain.Standing;
 import ru.kpfu.itis.group408.marushkai.gwt.client.AddPostService;
 
 import java.util.List;
@@ -20,6 +22,9 @@ public class AddPostServiceImpl implements AddPostService {
     @Autowired
     PostDAO postDAO;
 
+    @Autowired
+    StandingDAO standingDAO;
+
     @Override
     public void add() {
 
@@ -31,16 +36,11 @@ public class AddPostServiceImpl implements AddPostService {
         return postDAO.listContestants();
     }
 
-//    private static int toShowSize = 5;
-//
-//    @Autowired
-//    PostService<Post> postService;
-//
-////    @Autowired
-////    AdministrativeController controller;
-//
-//    @Override
-//    public void add() {
-////        controller.
-//    }
+    @Override
+    @Transactional
+    public List<Standing> getAllTeams() {
+        return standingDAO.listContestants();
+    }
+
+
 }

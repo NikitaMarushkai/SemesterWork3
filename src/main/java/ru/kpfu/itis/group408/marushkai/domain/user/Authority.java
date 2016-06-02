@@ -2,6 +2,7 @@ package ru.kpfu.itis.group408.marushkai.domain.user;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by unlim_000 on 06.04.2016.
@@ -9,7 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "authorities")
-public class Authority {
+public class Authority implements Serializable {
 
     public Authority() {
 

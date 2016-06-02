@@ -5,7 +5,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import ru.kpfu.itis.group408.marushkai.dao.PostDAO;
+import ru.kpfu.itis.group408.marushkai.domain.Comment;
 import ru.kpfu.itis.group408.marushkai.domain.Post;
+import ru.kpfu.itis.group408.marushkai.domain.user.User;
 import ru.kpfu.itis.group408.marushkai.form.AddNewsForm;
 import ru.kpfu.itis.group408.marushkai.form.UpdateNewsForm;
 import ru.kpfu.itis.group408.marushkai.service.interfaces.PostService;
@@ -132,4 +134,13 @@ public class PostServiceImpl implements PostService<Post> {
     public List<Post> listContestants() {
         return postDAO.listContestants();
     }
+
+    @Transactional
+    @Override
+    public void addComment(Integer postID, String commentText, User user) {
+        Comment comment = new Comment(commentText, postDAO.getById(postID), user);
+        postDAO.addComment(comment);
+    }
+
+
 }

@@ -1,5 +1,7 @@
 package ru.kpfu.itis.group408.marushkai.service.interfaces;
 
+import ru.kpfu.itis.group408.marushkai.form.EditTableForm;
+
 import java.util.List;
 
 /**
@@ -19,4 +21,6 @@ public interface StandingService<T> {
     List<T> getWestSide();
 
     List<T> getEastSide();
+
+    void update(EditTableForm form);
 }

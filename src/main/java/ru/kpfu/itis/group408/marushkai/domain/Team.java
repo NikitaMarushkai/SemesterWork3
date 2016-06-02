@@ -1,13 +1,14 @@
 package ru.kpfu.itis.group408.marushkai.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by unlim_000 on 19.03.2016.
  */
 @Entity
 @Table(name = "teams")
-public class Team {
+public class Team implements Serializable {
     public Team() {
     }
 

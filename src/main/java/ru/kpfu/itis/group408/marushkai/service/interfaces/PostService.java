@@ -1,5 +1,6 @@
 package ru.kpfu.itis.group408.marushkai.service.interfaces;
 
+import ru.kpfu.itis.group408.marushkai.domain.user.User;
 import ru.kpfu.itis.group408.marushkai.form.AddNewsForm;
 import ru.kpfu.itis.group408.marushkai.form.UpdateNewsForm;
 
@@ -23,4 +24,6 @@ public interface PostService<T> extends Serializable {
     T getById(Integer id) throws Exception;
 
     List<T> listContestants();
+
+    void addComment(Integer postID, String commentText, User user);
 }
