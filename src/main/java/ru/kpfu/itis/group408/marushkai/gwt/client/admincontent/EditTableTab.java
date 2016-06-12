@@ -1,6 +1,8 @@
 package ru.kpfu.itis.group408.marushkai.gwt.client.admincontent;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -18,6 +20,7 @@ public class EditTableTab {
 
     private AddPostServiceAsync addPostService = GWT.create(AddPostService.class);
     private AsyncCallback<List<Standing>> callback;
+    private AsyncCallback<List<Standing>> callback1;
 
     public FormPanel getEditTableTab() {
 
@@ -47,18 +50,23 @@ public class EditTableTab {
 
             @Override
             public void onSuccess(List<Standing> result) {
+                teams.clear();
                 for (Standing standing : result) {
                     teams.addItem(standing.getTeam(), String.valueOf(standing.getId()));
                 }
             }
         };
 
-        teams.addClickHandler(new ClickHandler() {
+        addPostService.getAllTeams(callback);
+        final Button updateButton = new Button("Обновить список");
+        updateButton.addClickHandler(new ClickHandler() {
             @Override
-            public void onClick(ClickEvent event) {
+            public void onClick(ClickEvent clickEvent) {
                 addPostService.getAllTeams(callback);
             }
         });
+
+        vPanel.add(updateButton);
 
         //Adding choose teams
         final Label chooseTeamLabel = new Label("Выберите команду");
@@ -138,6 +146,44 @@ public class EditTableTab {
         pointsText.setName("pointsNumber");
         vPanel.add(pointsLabel);
         vPanel.add(pointsText);
+
+
+        final Hidden hidden = new Hidden();
+        hidden.setVisible(false);
+        vPanel.add(hidden);
+
+        teams.addChangeHandler(new ChangeHandler() {
+            @Override
+            public void onChange(ChangeEvent changeEvent) {
+                hidden.setValue(teams.getValue(teams.getSelectedIndex()));
+                addPostService.getAllTeams(callback1);
+            }
+        });
+
+        callback1 = new AsyncCallback<List<Standing>>() {
+            @Override
+            public void onFailure(Throwable throwable) {
+                status.setText("Ошибка в загрузке данных");
+            }
+
+            @Override
+            public void onSuccess(List<Standing> standing) {
+                for (Standing standing1 : standing){
+                    if (standing1.getId() == Integer.parseInt(hidden.getValue())){
+                        gamesNumberText.setValue(String.valueOf(standing1.getGames()));
+                        winsNumberText.setValue(String.valueOf(standing1.getWins()));
+                        overtimeWinsNumberText.setValue(String.valueOf(standing1.getOverTimeWins()));
+                        overtimeLosesNumberText.setValue(String.valueOf(standing1.getOverTimeFaults()));
+                        bullitWinsNumberText.setValue(String.valueOf(standing1.getBullitWins()));
+                        bullitLosesNumberText.setValue(String.valueOf(standing1.getBullitFaults()));
+                        losesNumberText.setValue(String.valueOf(standing1.getFaults()));
+                        totalGoalsText.setValue(String.valueOf(standing1.getGoals()));
+                        pointsText.setValue(String.valueOf(standing1.getScore()));
+                    }
+                }
+            }
+        };
+
 
         final Button submitButton = new Button("Подтвердить");
 

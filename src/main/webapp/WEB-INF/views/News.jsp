@@ -46,11 +46,6 @@
     </style>
 </head>
 <body id="main-body">
-<sec:authorize access="hasRole('admin')">
-    <div id="add_news">
-        <a id="add" href="/static/addPost">Добавить новость</a>
-    </div>
-</sec:authorize>
 <div id="menu" align="left">
     <ul id="m_list">
         <li class="list_element"><a href="/index" class="newslink">На главную</a></li>
@@ -71,7 +66,7 @@
                 </sec:authorize>
                 <img src="${post.image}">
                 <h2>${post.content}</h2>
-                <p><i>${post.creationDate}</i></p>
+                <p><i>Добавлено: ${post.creationDate}</i></p>
             </div>
         </c:forEach>
     </div>

@@ -31,9 +31,11 @@ public class AddPostTab {
 
         //News content input
         final Label newsContentName = new Label("Содержание новости");
-        final TextBox newsContent = new TextBox();
+        final TextArea newsContent = new TextArea();
         newsContent.getElement().setAttribute("type", "text");
         newsContent.setName("content");
+        newsContent.setCharacterWidth(150);
+        newsContent.setVisibleLines(15);
         verticalPanel.add(newsContentName);
         verticalPanel.add(newsContent);
 

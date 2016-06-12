@@ -12,6 +12,9 @@
 </head>
 <body id="teamlist_body">
 <div id="content">
+    <div>
+        <a href="/">На главную</a>
+    </div>
     <div id="team-block">
         <c:forEach items="${teams}" var="team">
             <div id="team_item">

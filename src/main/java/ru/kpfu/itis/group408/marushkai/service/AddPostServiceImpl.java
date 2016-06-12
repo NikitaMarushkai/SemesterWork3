@@ -5,9 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.kpfu.itis.group408.marushkai.dao.AdvertDao;
+import ru.kpfu.itis.group408.marushkai.dao.ContestantDAO;
 import ru.kpfu.itis.group408.marushkai.dao.PostDAO;
 import ru.kpfu.itis.group408.marushkai.dao.StandingDAO;
 import ru.kpfu.itis.group408.marushkai.domain.Advert;
+import ru.kpfu.itis.group408.marushkai.domain.Contestant;
 import ru.kpfu.itis.group408.marushkai.domain.Post;
 import ru.kpfu.itis.group408.marushkai.domain.Standing;
 import ru.kpfu.itis.group408.marushkai.gwt.client.AddPostService;
@@ -30,6 +32,9 @@ public class AddPostServiceImpl implements AddPostService {
     @Autowired
     AdvertDao advertDao;
 
+    @Autowired
+    ContestantDAO contestantDAO;
+
     @Override
     public void add() {
 
@@ -48,8 +53,15 @@ public class AddPostServiceImpl implements AddPostService {
     }
 
     @Override
+    @Transactional
     public List<Advert> getAllAdverts() {
         return advertDao.listContestants();
+    }
+
+    @Override
+    @Transactional
+    public List<Contestant> getAllContestants() {
+        return contestantDAO.listContestants();
     }
 
 

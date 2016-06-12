@@ -1,0 +1,2 @@
+serviceClass: ru.kpfu.itis.group408.marushkai.gwt.client.AddPostService
+path: F1AB12360E6559CE64932F0411376BDC.gwt.rpc

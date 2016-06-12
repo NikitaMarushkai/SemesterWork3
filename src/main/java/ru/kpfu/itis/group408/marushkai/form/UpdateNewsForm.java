@@ -12,13 +12,13 @@ public class UpdateNewsForm {
     private String editHead;
     private String editContent;
     private MultipartFile editPhoto;
-    private String delete;
+    private Integer delete;
 
-    public String getDelete() {
+    public Integer getDelete() {
         return delete;
     }
 
-    public void setDelete(String delete) {
+    public void setDelete(Integer delete) {
         this.delete = delete;
     }
 

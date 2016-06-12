@@ -12,6 +12,9 @@
 </head>
 <body>
 <div class="content">
+    <div>
+        <a href="/">На главную</a>
+    </div>
     <table cellspacing="1">
         <h1>Это ваш профиль,${userName}</h1>
         <tr>

@@ -3,6 +3,7 @@ package ru.kpfu.itis.group408.marushkai.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.kpfu.itis.group408.marushkai.annotation.TimeLog;
 import ru.kpfu.itis.group408.marushkai.dao.StandingDAO;
 import ru.kpfu.itis.group408.marushkai.domain.Standing;
 import ru.kpfu.itis.group408.marushkai.form.EditTableForm;
@@ -78,6 +79,7 @@ public class StandingServiceImpl implements StandingService<Standing> {
     }
 
     @Override
+    @TimeLog
     public void update(EditTableForm form) {
         Standing standing = standingDAO.getById(form.getTeamChooser());
         if (form.getBullitLosesNumber().length() != 0) {

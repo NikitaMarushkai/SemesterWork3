@@ -23,10 +23,14 @@ public class PostDAO implements DAO<Post> {
     }
 
     @Override
-    public void deleteById(Integer id) throws NullPointerException {
+    public void deleteById(Integer id) throws Exception {
+        List<Comment> comments = getCommentsByPostId(id);
+        for (Comment comment : comments) {
+            this.deleteCommentById(comment.getCommentId());
+        }
         Post post = this.getById(id);
         if (post != null) {
-            sessionFactory.getCurrentSession().createQuery("delete from Post where id = ?").setInteger(0, post.getId()).executeUpdate();
+            sessionFactory.getCurrentSession().delete(post);
         } else {
             throw new NullPointerException("No such post found, nothing to delete");
         }
@@ -63,5 +67,23 @@ public class PostDAO implements DAO<Post> {
 
     public void addComment(Comment comment) {
         sessionFactory.getCurrentSession().save(comment);
+    }
+
+    public List<Comment> getCommentsByPostId(Integer postId){
+        return sessionFactory.getCurrentSession().createQuery("from Comment where ID = " + postId).list();
+    }
+
+    public Comment getCommentById(Integer commentId){
+        return (Comment) sessionFactory.getCurrentSession().load(Comment.class, commentId);
+    }
+
+    public void deleteCommentById(Integer id) throws Exception{
+        Comment comment = this.getCommentById(id);
+        if (comment != null){
+            sessionFactory.getCurrentSession().delete(comment);
+        } else {
+            throw new Exception("No such comment found");
+        }
+
     }
 }

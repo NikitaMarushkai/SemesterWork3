@@ -1,5 +1,7 @@
 package ru.kpfu.itis.group408.marushkai.domain;
 
+import com.google.gwt.user.client.rpc.IsSerializable;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -8,7 +10,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "standings")
-public class Standing implements Serializable {
+public class Standing implements IsSerializable, Serializable {
 
     @Id
     @GeneratedValue

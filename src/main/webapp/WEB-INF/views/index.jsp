@@ -47,12 +47,19 @@
         </tr>
     </table>
     <br>
-    <div>
-        <c:forEach items="${advert}" var="adv">
-            <a href="${adv.link}"><img src="${adv.image}"></a>
-            <p>${adv.text}</p>
-        </c:forEach>
-    </div>
+    <sec:authorize access="isAnonymous()">
+        <table class="advert">
+            <tr>
+            <c:forEach items="${advert}" var="adv">
+                <td id="advert">
+                <a href="${adv.link}"><img id="image_adv" src="${adv.image}"></a>
+                <p id="text_adv">${adv.text}</p>
+                </td>
+            </c:forEach>
+            </tr>
+        </table>
+    </sec:authorize>
+
     <table cellspacing="4" cellpadding="2" id="standings">
         <caption id="standings_head">Турнирная таблица КХЛ</caption>
         <tr>

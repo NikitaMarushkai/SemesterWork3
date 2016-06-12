@@ -1,5 +1,6 @@
 package ru.kpfu.itis.group408.marushkai.domain;
 
+import com.google.gwt.user.client.rpc.IsSerializable;
 import ru.kpfu.itis.group408.marushkai.domain.user.User;
 
 import javax.persistence.*;
@@ -11,7 +12,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "comments")
-public class Comment implements Serializable {
+public class Comment implements IsSerializable, Serializable {
 
     public Comment() {
     }

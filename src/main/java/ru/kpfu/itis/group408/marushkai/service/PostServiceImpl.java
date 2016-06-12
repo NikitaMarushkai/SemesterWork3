@@ -1,9 +1,11 @@
 package ru.kpfu.itis.group408.marushkai.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.datetime.DateFormatter;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+import ru.kpfu.itis.group408.marushkai.annotation.TimeLog;
 import ru.kpfu.itis.group408.marushkai.dao.PostDAO;
 import ru.kpfu.itis.group408.marushkai.domain.Comment;
 import ru.kpfu.itis.group408.marushkai.domain.Post;
@@ -17,7 +19,10 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 /**
@@ -31,10 +36,12 @@ public class PostServiceImpl implements PostService<Post> {
 
     @Transactional
     @Override
+    @TimeLog
     public void add(AddNewsForm toAdd) {
         Post post = new Post();
         post.setName(toAdd.getHead());
         post.setContent(toAdd.getContent());
+        post.setCreationDate(new DateFormatter("dd.MM.yyyy HH:mm:yyyy").print(new Date(), Locale.getDefault()));
         MultipartFile file = toAdd.getImage();
         String newFileName = null;
         File directory;
@@ -64,45 +71,48 @@ public class PostServiceImpl implements PostService<Post> {
 
     @Transactional
     @Override
-    public void update(UpdateNewsForm updateNewsForm) {
+    @TimeLog
+    public void update(UpdateNewsForm updateNewsForm) throws Exception {
         Post post = postDAO.getById(updateNewsForm.getNewsChooser());
-        if (updateNewsForm.getDelete().equals("1")) {
+        System.out.println(post.getName());
+        if (updateNewsForm.getDelete() == 1) {
             postDAO.deleteById(updateNewsForm.getNewsChooser());
-        }
-        if (updateNewsForm.getEditHead().length() != 0) {
-            post.setName(updateNewsForm.getEditHead());
-        }
-        if (updateNewsForm.getEditContent().length() != 0) {
-            post.setContent(updateNewsForm.getEditContent());
-        }
-        if (!updateNewsForm.getEditPhoto().isEmpty()) {
-            new File(post.getImage()).delete();
-            MultipartFile file = updateNewsForm.getEditPhoto();
-            String newFileName = null;
-            File directory;
-            //Загружаем картинку
-            if (!file.isEmpty()) {
-                try {
-                    byte[] fileBytes = file.getBytes();
-                    directory = new File(PropertiesWork.getPath() + File.separator + "news_images");
-                    if (!directory.exists()) {
-                        directory.mkdirs();
-                    }
-                    //Гененрируем имя картинке
-                    newFileName = UUID.randomUUID().toString() + "." +
-                            file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1);
-                    File serverFile = new File(directory.getAbsolutePath() + File.separator + newFileName);
-                    //Сохраняем картинку
-                    try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(serverFile))) {
-                        bos.write(fileBytes);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        } else {
+            if (updateNewsForm.getEditHead().length() != 0) {
+                post.setName(updateNewsForm.getEditHead());
             }
-            post.setImage("/images/news_images/" + newFileName);
+            if (updateNewsForm.getEditContent().length() != 0) {
+                post.setContent(updateNewsForm.getEditContent());
+            }
+            if (!updateNewsForm.getEditPhoto().isEmpty()) {
+                new File(post.getImage()).delete();
+                MultipartFile file = updateNewsForm.getEditPhoto();
+                String newFileName = null;
+                File directory;
+                //Загружаем картинку
+                if (!file.isEmpty()) {
+                    try {
+                        byte[] fileBytes = file.getBytes();
+                        directory = new File(PropertiesWork.getPath() + File.separator + "news_images");
+                        if (!directory.exists()) {
+                            directory.mkdirs();
+                        }
+                        //Гененрируем имя картинке
+                        newFileName = UUID.randomUUID().toString() + "." +
+                                file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1);
+                        File serverFile = new File(directory.getAbsolutePath() + File.separator + newFileName);
+                        //Сохраняем картинку
+                        try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(serverFile))) {
+                            bos.write(fileBytes);
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                post.setImage("/images/news_images/" + newFileName);
+            }
+                postDAO.updatePost(post);
         }
-        postDAO.updatePost(post);
     }
 
     @Transactional
@@ -131,7 +141,7 @@ public class PostServiceImpl implements PostService<Post> {
 
     @Transactional
     @Override
-    public List<Post> listContestants() {
+    public List<Post> listContestants() throws ParseException {
         return postDAO.listContestants();
     }
 
@@ -140,6 +150,18 @@ public class PostServiceImpl implements PostService<Post> {
     public void addComment(Integer postID, String commentText, User user) {
         Comment comment = new Comment(commentText, postDAO.getById(postID), user);
         postDAO.addComment(comment);
+    }
+
+    @Transactional
+    @Override
+    public List<Comment> getCommentsByPostId(Integer postId) {
+        return postDAO.getCommentsByPostId(postId);
+    }
+
+    @Transactional
+    @Override
+    public void deleteComment(Integer commentId) throws Exception {
+        postDAO.deleteCommentById(commentId);
     }
 
 

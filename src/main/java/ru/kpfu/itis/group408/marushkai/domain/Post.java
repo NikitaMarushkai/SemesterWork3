@@ -1,5 +1,7 @@
 package ru.kpfu.itis.group408.marushkai.domain;
 
+import com.google.gwt.user.client.rpc.IsSerializable;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -11,7 +13,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "POSTS")
-public class Post implements Serializable {
+public class Post implements IsSerializable, Serializable {
 
     public Post() {
     }
@@ -26,7 +28,11 @@ public class Post implements Serializable {
 
     @Column(name = "CREATION_DATE")
     @GeneratedValue
-    private String creationDate = new Date().toString();
+    private String creationDate;
+
+    @Column(name = "SERV_DATE")
+    @GeneratedValue
+    private Date servDate = new Date();
 
     @Column(name = "IMAGE")
     private String image;
@@ -34,10 +40,17 @@ public class Post implements Serializable {
     @Column(name = "CONTENT")
     private String content;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "ID")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "post")
     private transient Set<Comment> comments;
 
+
+    public Date getServDate() {
+        return servDate;
+    }
+
+    public void setServDate(Date servDate) {
+        this.servDate = servDate;
+    }
 
     public Post(String name, String image, String content) {
         this.name = name;

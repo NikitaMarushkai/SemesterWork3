@@ -57,6 +57,9 @@
     <h1>Вам нужно <a href="/login.jsp">войти</a>, чтобы видеть расписание</h1>
 </sec:authorize>
 <sec:authorize access="isAuthenticated()">
+    <div align="center">
+        <a href="/">На главную</a>
+    </div>
     <div>
         <div id="1" align="left" style="top:1em; width:49%; height:50px; float:left">
             <table>

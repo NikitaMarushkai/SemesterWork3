@@ -4,32 +4,41 @@
 <html>
 <head>
     <title>Текущая новость</title>
+    <link rel="stylesheet" href="../../resources/Styles/HockeyStyles.css">
 </head>
-<body>
+<body id="main-news-body">
 <div>
-    <div>
+    <a href="/">На главную</a>
+</div>
+<div id="post">
+    <div align="center" id="post-self">
         <h1>${post.name}</h1>
         <img src="${post.image}">
         <h2>${post.content}</h2>
         <p><i>${post.creationDate}</i></p>
-        <div>
-            <c:forEach items="${post.comments}" var="comment">
-                <h5>${comment.user.username} прокомментировал(а)</h5>
-                <p>${comment.text}</p>
-                <p><i>${comment.creationDate}</i></p>
+        <div align="left" id="post-comment">
+            <c:forEach items="${comments}" var="comment">
+                <div id="comment">
+                    <h5>${comment.user.username} прокомментировал(а)</h5>
+                    <p id="text">${comment.text}</p>
+                    <p align="right"><i>${comment.creationDate}</i></p>
+                    <sec:authorize access="hasRole('admin')">
+                        <a href="/admin/deleteComment?id=${comment.commentId}">Удалить комментарий</a>
+                    </sec:authorize>
+                </div>
             </c:forEach>
             <sec:authorize access="isAuthenticated()">
-                <form name="addCommentForm" action="/addComment">
+                <form method="post" name="addCommentForm" action="/addComment">
                     <label>Введите текст комментария здесь
-                        <input type="text" name="textComment">
+                        <textarea id="text_area" cols="60" rows="15" wrap="hard" name="text"></textarea>
                     </label>
                     <input type="hidden" name="postID" value="${post.id}">
-                    <button onclick="addComment(${post.id}, this.form)" value="Добавить">Добавить</button>
+                    <input type="submit" value="Добавить!">
                 </form>
             </sec:authorize>
         </div>
     </div>
 </div>
-<script src="/resources/Scripts/NewsWork.js"></script>
+<%--<script src="/resources/Scripts/NewsWork.js"></script>--%>
 </body>
 </html>

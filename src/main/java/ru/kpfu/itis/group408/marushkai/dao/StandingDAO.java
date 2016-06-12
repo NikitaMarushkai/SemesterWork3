@@ -13,7 +13,6 @@ import java.util.List;
 @Repository
 public class StandingDAO implements DAO<Standing> {
 
-    //ИСПОЛЬЗОВАТЬ ТОЛЬКО getByName!!!
     @Autowired
     private SessionFactory sessionFactory;
 
@@ -23,9 +22,11 @@ public class StandingDAO implements DAO<Standing> {
     }
 
     @Override
-    @Deprecated
-    public void deleteById(Integer id) throws Exception {
-        throw new Exception("Impossible to delete by ID, use deleteByName instead");
+    public void deleteById(Integer id) {
+        Standing standing = this.getById(id);
+        if (standing != null){
+            sessionFactory.getCurrentSession().delete(standing);
+        } else throw new NullPointerException("No such element");
     }
 
     @Override

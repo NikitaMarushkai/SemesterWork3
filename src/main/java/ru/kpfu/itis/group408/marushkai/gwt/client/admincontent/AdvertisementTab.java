@@ -73,18 +73,22 @@ public class AdvertisementTab {
 
             @Override
             public void onSuccess(List<Advert> result) {
+                advList.clear();
                 for (Advert advert : result) {
                     advList.addItem(advert.getLink(), String.valueOf(advert.getId()));
                 }
             }
         };
 
-        advList.addClickHandler(new ClickHandler() {
+        addPostService.getAllAdverts(callback);
+        final Button updateButton = new Button("Обновить");
+        updateButton.addClickHandler(new ClickHandler() {
             @Override
-            public void onClick(ClickEvent event) {
+            public void onClick(ClickEvent clickEvent) {
                 addPostService.getAllAdverts(callback);
             }
         });
+        vPanel.add(updateButton);
 
         vPanel.add(advList);
 

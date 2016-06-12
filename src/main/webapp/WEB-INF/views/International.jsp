@@ -56,6 +56,9 @@
             <a href="http://nhl.com">Ссылка на официальный сайт лиги NHL</a>
         </td>
     </tr>
+    <tr>
+        <td><a href="/">На главную</a></td>
+    </tr>
 </table>
 
 </body>

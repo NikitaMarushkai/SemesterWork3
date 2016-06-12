@@ -21,8 +21,4 @@ public class StaticController {
         return "Registration";
     }
 
-    @RequestMapping("/addPost")
-    public String addPost() {
-        return "AddPost";
-    }
 }
