@@ -1,0 +1,3 @@
+# Module resources.gwt
+# RPC service class, partial path of RPC policy file
+ru.kpfu.itis.group408.marushkai.gwt.client.AddPostService, 6541A123EF7BA69ED2B9B5B004B319F4.gwt.rpc

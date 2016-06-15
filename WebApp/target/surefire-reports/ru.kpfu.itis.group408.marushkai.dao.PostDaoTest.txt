@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: ru.kpfu.itis.group408.marushkai.dao.PostDaoTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.108 sec

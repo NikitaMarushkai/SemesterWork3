@@ -5,7 +5,11 @@
     <groupId>ru.kpfu.itis.group408.marushkai</groupId>
     <artifactId>SemesterWork3</artifactId>
     <name>SemesterWork3</name>
-    <packaging>war</packaging>
+    <modules>
+        <module>SeleniumTest</module>
+        <module>WebApp</module>
+    </modules>
+    <packaging>pom</packaging>
     <version>1.0.0-BUILD-SNAPSHOT</version>
     <properties>
         <java-version>1.8</java-version>
